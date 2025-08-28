@@ -1,0 +1,9 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.myreviews .swiper-pagination-bullet-active {
+  background-color: #6e11b0;
+}
+
+
