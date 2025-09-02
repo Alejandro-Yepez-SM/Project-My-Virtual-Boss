@@ -52,8 +52,8 @@ export const UserTasks = ({
 
   const filteredTasks = tasks.filter((task) => {
     const matchesSearch =
-      task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      task.description.toLowerCase().includes(searchTerm.toLowerCase());
+      task.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      task.description?.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory =
       categoryFilter === "all" || task.category === categoryFilter;
     return matchesSearch && matchesCategory;
@@ -236,13 +236,15 @@ export const UserTasks = ({
                                     >
                                       {priorityData.label}
                                     </Badge>
-                                    {task.scheduledTime && (
+                                    {task.startTime && (
                                       <Badge
                                         variant="outline"
                                         className="text-neutral-600"
                                       >
                                         <Clock className="h-3 w-3 mr-1" />
-                                        {formatTimeTo12Hour(task.scheduledTime)}
+                                        {formatTimeTo12Hour(
+                                          task.startTime
+                                        )} - {formatTimeTo12Hour(task.endTime)}
                                       </Badge>
                                     )}
                                   </div>
@@ -300,13 +302,15 @@ export const UserTasks = ({
                                       {task.description}
                                     </p>
                                   </div>
-                                  {task.scheduledTime && (
+                                  {task.startTime && (
                                     <Badge
                                       variant="outline"
                                       className="text-neutral-500 ml-4"
                                     >
                                       <Clock className="h-3 w-3 mr-1" />
-                                      {formatTimeTo12Hour(task.scheduledTime)}
+                                      {formatTimeTo12Hour(
+                                        task.startTime
+                                      )} - {formatTimeTo12Hour(task.endTime)}
                                     </Badge>
                                   )}
                                 </div>
