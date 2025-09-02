@@ -35,6 +35,7 @@ export const SignInForm = () => {
         name: "",
         email: "",
         phone: "",
+        activeTemplateId: "",
         modules: [],
         metaData: {},
       });

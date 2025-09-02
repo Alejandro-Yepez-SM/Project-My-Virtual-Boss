@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Target, CalendarDays } from "lucide-react";
+import { Plus, Target, CalendarDays, RefreshCcw } from "lucide-react";
 import { format } from "date-fns";
 import { useToast } from "@/hooks/useToast";
 import DailySchedule from "@/custom_modules/tasks/components/DailySchedule";
@@ -12,6 +12,8 @@ import { userData } from "@/store/user";
 import { UserTasks } from "./components/UserTasks";
 import { NewTaskForm } from "./components/TaskForm";
 import { updateTaskMutation } from "./graphql/mutations";
+import { useGetTaskByUserQuery } from "./hooks/useGetTaskByUserQuery";
+import { useToggleTaskCompletion } from "./hooks/useToggleTaskCompletion";
 
 export default function Tasks() {
   const user = useReactiveVar(userData);
@@ -22,16 +24,21 @@ export default function Tasks() {
 
   const dateString = format(selectedDate, "yyyy-MM-dd");
 
-  const { data, loading: isLoading } = useQuery<{ getTasksByUser: ITask[] }>(
-    getTaskByUserQuery,
-    {
-      variables: {
-        userId: user?.id,
-        date: dateString,
-      },
-    }
-  );
+  const {
+    data,
+    loading: isLoading,
+    refetch,
+    cacheKey,
+  } = useGetTaskByUserQuery({
+    dateString,
+    userActiveTemplateId: user?.activeTemplateId ?? "",
+    userId: user?.id ?? "",
+    disabled: !user?.id || !user?.activeTemplateId,
+  });
+
   const tasks = data?.getTasksByUser ?? [];
+
+  console.table(tasks);
 
   const [updateNewTaskFn] = useMutation<{ updateTask: ITask }>(
     updateTaskMutation,
@@ -43,7 +50,7 @@ export default function Tasks() {
 
         const existing = cache.readQuery<{ getTasksByUser: ITask[] }>({
           query: getTaskByUserQuery,
-          variables: { userId: user?.id, date: dateString },
+          variables: cacheKey,
         });
 
         if (!existing) return;
@@ -54,7 +61,7 @@ export default function Tasks() {
 
         cache.writeQuery({
           query: getTaskByUserQuery,
-          variables: { userId: user?.id, date: dateString },
+          variables: cacheKey,
           data: {
             getTasksByUser: updatedTasks,
           },
@@ -63,25 +70,26 @@ export default function Tasks() {
     }
   );
 
+  const [toggleTaskCompletionFn] = useToggleTaskCompletion({
+    userId: user?.id ?? "",
+    userActiveTemplateId: user?.activeTemplateId ?? "",
+  });
+
   const handleTaskToggle = async (task: ITask) => {
     try {
-      await updateNewTaskFn({
-        variables: {
-          userId: user?.id,
-          taskId: task.id,
-          updates: {
-            isCompleted: !task.isCompleted,
-          },
-        },
+      const { data } = await toggleTaskCompletionFn({
+        userId: user?.id ?? "",
+        task,
       });
 
-      if (!task.isCompleted) {
+      if (data?.completeTask?.isCompleted) {
         toast({
           title: "Task Completed!",
           description: `Great job completing "${task.title}"`,
         });
       }
     } catch (error) {
+      console.log("::::error", error);
       toast({
         title: "Error",
         description: "Failed to update task.",

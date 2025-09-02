@@ -54,10 +54,10 @@ export default function DailySchedule({
           </div>
         ) : (
           (tasks.length > 0 ? tasks : []).map((task: any, index: number) => {
-            const [hoursStr, minutesStr] = task.scheduledTime.split(":");
+            const [hoursStr, minutesStr] = task.startTime.split(":");
             let hours = parseInt(hoursStr);
             const minutes = parseInt(minutesStr.split(" ")[0]);
-            const isPM = task.scheduledTime.includes("PM");
+            const isPM = task.startTime.includes("PM");
 
             // Convert to 24-hour format
             if (isPM && hours !== 12) {
@@ -114,7 +114,7 @@ export default function DailySchedule({
                             {task.title}
                           </h3>
                           <Badge variant="outline" className="text-xs">
-                            {formatTimeTo12Hour(task.scheduledTime)}
+                            {formatTimeTo12Hour(task.startTime)}
                           </Badge>
                           {task.targetCount && (
                             <Badge variant="secondary" className="text-xs">

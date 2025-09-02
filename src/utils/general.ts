@@ -72,3 +72,14 @@ export const formatTimeTo12Hour = (time24: string) => {
     hour12: true,
   }).format(date);
 };
+
+export const toMin = (hhmm: string) => {
+  const [h, m] = hhmm.split(":").map(Number);
+  return h * 60 + m;
+};
+
+export const toHHMM = (m: number) => {
+  const h = String(Math.floor(m / 60)).padStart(2, "0");
+  const mm = String(m % 60).padStart(2, "0");
+  return `${h}:${mm}`;
+};

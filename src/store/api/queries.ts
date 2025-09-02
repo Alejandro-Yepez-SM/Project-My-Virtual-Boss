@@ -5,6 +5,7 @@ export const getUserQuery = gql`
     getUser(tenant: $tenant, userId: $userId) {
       email
       id
+      activeTemplateId
       modules {
         icon
         label
