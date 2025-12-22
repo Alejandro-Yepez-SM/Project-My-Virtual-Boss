@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Badge } from "@/components/ui/badge";
 import {
   Select,
   SelectContent,
@@ -11,19 +10,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
-  Plus,
   Search,
-  Phone,
-  Mail,
-  MapPin,
-  Calendar,
   Star,
   Edit,
-  Trash2,
   UserPlus,
   Filter,
   Users,
@@ -202,7 +193,7 @@ export default function CRM() {
     },
   }); */
 
-  const handleCallContact = (contact: Contact) => {
+  /* const handleCallContact = (contact: Contact) => {
     if (!contact.phone) {
       toast({
         title: "No Phone Number",
@@ -225,7 +216,7 @@ export default function CRM() {
       title: "Calling Contact",
       description: `Initiating call to ${contact.firstName} ${contact.lastName}`,
     });
-  };
+  }; */
 
   /* const createContactMutation = useMutation({
     mutationFn: async (contactData: any) => {
@@ -328,7 +319,7 @@ export default function CRM() {
     },
   }); */
 
-  const resetForm = () => {
+  /*   const resetForm = () => {
     setNewContact({
       firstName: "",
       lastName: "",
@@ -342,7 +333,7 @@ export default function CRM() {
       state: "",
       zipCode: "",
     });
-  };
+  }; */
 
   const handleCreateContact = () => {
     if (!newContact.firstName.trim() || !newContact.lastName.trim()) {
@@ -356,7 +347,7 @@ export default function CRM() {
 
     //createContactMutation.mutate(newContact);
   };
-
+  /* 
   const getCategoryData = (categoryValue: string) => {
     return (
       contactCategories.find((cat) => cat.value === categoryValue) ||
@@ -375,7 +366,7 @@ export default function CRM() {
     if (score >= 60) return "text-yellow-600";
     if (score >= 40) return "text-orange-600";
     return "text-red-600";
-  };
+  }; */
 
   /* const filteredContacts = contacts.filter((contact) => {
     const matchesSearch =
@@ -394,16 +385,16 @@ export default function CRM() {
 
     return matchesSearch && matchesCategory && matchesTab && contact.isActive;
   }); */
-
+  /* 
   const getContactsByCategory = () => {
-    /*  const categoryCounts = contactCategories.map((category) => ({
+     const categoryCounts = contactCategories.map((category) => ({
       ...category,
       count: contacts.filter((c) => c.category === category.value && c.isActive)
         .length,
     }));
-    return categoryCounts; */
+    return categoryCounts;
   };
-
+ */
   return (
     <div>
       <div className="space-y-8">

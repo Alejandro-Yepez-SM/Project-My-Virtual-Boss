@@ -90,13 +90,13 @@ export default function FollowUpDialog({
     },
   });
  */
-  const resetForm = () => {
+  /*  const resetForm = () => {
     setFollowUpData({
       method: "",
       notes: "",
       nextFollowUpDate: "",
     });
-  };
+  }; */
 
   const handleSubmit = () => {
     if (!followUpData.method) {
@@ -108,12 +108,12 @@ export default function FollowUpDialog({
       return;
     }
 
-    const submitData = {
+    /*  const submitData = {
       contactId: contact?.id,
       method: followUpData.method,
       notes: followUpData.notes,
       nextFollowUpDate: followUpData.nextFollowUpDate || null,
-    };
+    }; */
 
     /*  followUpMutation.mutate(submitData); */
   };
@@ -122,12 +122,12 @@ export default function FollowUpDialog({
     // Set next follow-up for tomorrow
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
-    const tomorrowString = tomorrow.toISOString().split("T")[0];
+    /*    const tomorrowString = tomorrow.toISOString().split("T")[0]; */
 
     // Update contact without recording a follow-up
-    const updateData = {
+    /*  const updateData = {
       nextFollowUpDate: tomorrowString,
-    };
+    }; */
 
     // Update the contact directly
     /*  apiRequest("PATCH", `/api/contacts/${contact?.id}`, updateData)

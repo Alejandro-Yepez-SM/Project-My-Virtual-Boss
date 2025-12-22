@@ -1,8 +1,6 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -15,30 +13,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useLanguage } from "@/hooks/useLanguage";
-import {
-  User,
-  MapPin,
-  Globe,
-  Clock,
-  Languages,
-  Eye,
-  Compass,
-  Heart,
-  Target,
-  TrendingUp,
-  Plus,
-  Minus,
-  ChevronDown,
-  Check,
-} from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import { useToast } from "@/hooks/useToast";
+import { User, MapPin, Eye, Target, TrendingUp } from "lucide-react";
+
 import { useReactiveVar } from "@apollo/client";
 import { userData } from "@/store/user";
 
@@ -70,22 +46,22 @@ const profileSettingsSchema = z.object({
     .optional(),
 });
 
-type ProfileSettingsData = z.infer<typeof profileSettingsSchema>;
-
+/* type ProfileSettingsData = z.infer<typeof profileSettingsSchema>;
+ */
 export default function ProfileSettings() {
-  const { toast } = useToast();
+  /*   const { toast } = useToast(); */
   const userInfo = useReactiveVar(userData);
 
-  const { t, language, setLanguage } = useLanguage();
-  const [activeSection, setActiveSection] = useState("location");
-  const [swotOpenStates, setSwotOpenStates] = useState<Record<string, boolean>>(
+  /*   const { t, language, setLanguage } = useLanguage(); */
+  /*   const [activeSection, setActiveSection] = useState("location");
+   */ /*   const [swotOpenStates, setSwotOpenStates] = useState<Record<string, boolean>>(
     {
       strengths: false,
       weaknesses: false,
       opportunities: false,
       threats: false,
     }
-  );
+  ); */
 
   const form = useForm({
     resolver: zodResolver(profileSettingsSchema),
@@ -159,11 +135,11 @@ export default function ProfileSettings() {
     return parseInt(numericValue).toLocaleString();
   };
 
-  const onSubmit = (data: ProfileSettingsData) => {
+  const onSubmit = () => {
     /* updateProfileMutation.mutate(data); */
   };
 
-  const swotOptions = {
+  /* const swotOptions = {
     strengths: [
       "Strong communication skills",
       "Local market knowledge",
@@ -232,13 +208,13 @@ export default function ProfileSettings() {
       "Market inventory shortages",
       "Natural disasters/external events",
     ],
-  };
+  }; */
 
-  const toggleSWOTOption = (
+  /*   const toggleSWOTOption = (
     category: keyof ProfileSettingsData["swotAnalysis"],
     option: string
   ) => {
-    /* const currentItems = form.getValues(`swotAnalysis.${category}`) || [];
+    const currentItems = form.getValues(`swotAnalysis.${category}`) || [];
 
     if (currentItems.includes(option)) {
       // Remove the option
@@ -247,10 +223,10 @@ export default function ProfileSettings() {
     } else {
       // Add the option
       form.setValue(`swotAnalysis.${category}`, [...currentItems, option]);
-    } */
-  };
+    }
+  }; */
 
-  const sections = [
+  /*   const sections = [
     {
       id: "location",
       title: t("profile.location", "Location & Preferences"),
@@ -284,14 +260,14 @@ export default function ProfileSettings() {
         "Your income targets and commission structure"
       ),
     },
-  ];
+  ]; */
 
   return (
     <div className="space-y-6">
       <div className="flex items-center space-x-3 mb-6">
         <User className="h-6 w-6 text-primary" />
         <div>
-          <h2 className="text-2xl font-bold text-neutral-900">
+          {/*    <h2 className="text-2xl font-bold text-neutral-900">
             {t("profile.title", "Profile Settings")}
           </h2>
           <p className="text-neutral-600">
@@ -299,13 +275,13 @@ export default function ProfileSettings() {
               "profile.subtitle",
               "Update your personal information, preferences, and goals"
             )}
-          </p>
+          </p> */}
         </div>
       </div>
 
       {/* Section Navigation */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        {sections.map((section) => {
+        {/*  {sections.map((section) => {
           const IconComponent = section.icon;
           return (
             <Card
@@ -332,12 +308,12 @@ export default function ProfileSettings() {
               </CardContent>
             </Card>
           );
-        })}
+        })} */}
       </div>
 
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         {/* Location & Preferences */}
-        {activeSection === "location" && (
+        {false && (
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
@@ -348,9 +324,9 @@ export default function ProfileSettings() {
             <CardContent className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <Label htmlFor="region">
+                  {/*  <Label htmlFor="region">
                     {t("profile.region", "Region")}
-                  </Label>
+                  </Label> */}
                   <Select
                     value={form.watch("region")}
                     onValueChange={(value) => form.setValue("region", value)}
@@ -374,9 +350,9 @@ export default function ProfileSettings() {
                   </Select>
                 </div>
                 <div>
-                  <Label htmlFor="language">
+                  {/*   <Label htmlFor="language">
                     {t("profile.language", "Language")}
-                  </Label>
+                  </Label> */}
                   <Select
                     value={form.watch("language")}
                     onValueChange={(value) => {
@@ -478,7 +454,7 @@ export default function ProfileSettings() {
         )}
 
         {/* Vision & Mission */}
-        {activeSection === "vision" && (
+        {false && (
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
@@ -532,7 +508,7 @@ export default function ProfileSettings() {
         )}
 
         {/* SWOT Analysis */}
-        {activeSection === "swot" && (
+        {false && (
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
@@ -644,7 +620,7 @@ export default function ProfileSettings() {
         )}
 
         {/* Financial Goals */}
-        {activeSection === "financial" && (
+        {false && (
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
