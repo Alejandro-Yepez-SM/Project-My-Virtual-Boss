@@ -20,7 +20,8 @@ export interface ITask {
   id: string;
   title: string;
   description: string;
-  scheduledTime: string;
+  startTime: string;
+  endTime: string;
   isCompleted: boolean;
   targetCount?: number;
   currentProgress?: number;

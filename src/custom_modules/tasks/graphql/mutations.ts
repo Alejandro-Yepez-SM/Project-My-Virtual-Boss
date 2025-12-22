@@ -1,49 +1,80 @@
 import { gql } from "@apollo/client";
 
 export const addTaskMutation = gql`
-  mutation addTask($userId: String!, $task: TaskInput!) {
-    addTask(userId: $userId, task: $task) {
-      category
-      currentProgress
-      description
+  mutation addTask($tenant: TenantData!, $userId: String!, $task: TaskInput!) {
+    addTask(tenant: $tenant, userId: $userId, task: $task) {
       id
       date
       isCompleted
       priority
-      scheduledTime
-      targetCount
       title
+      description
+      category
+      startTime
+      endTime
       source
-      status
     }
   }
 `;
 
 export const updateTaskMutation = gql`
   mutation updateTask(
+    $tenant: TenantData!
     $userId: String!
+    $date: AWSDate!
     $taskId: ID!
     $updates: TaskUpdateInput!
   ) {
-    updateTask(userId: $userId, taskId: $taskId, updates: $updates) {
-      category
-      currentProgress
-      description
+    updateTask(
+      tenant: $tenant
+      userId: $userId
+      date: $date
+      taskId: $taskId
+      updates: $updates
+    ) {
       id
-      date
-      isCompleted
-      priority
-      scheduledTime
-      targetCount
       title
+      description
+      isCompleted
+      date
+      priority
+      category
+      startTime
+      endTime
       source
-      status
+    }
+  }
+`;
+
+export const completeTaskMutation = gql`
+  mutation completeTask(
+    $tenant: TenantData!
+    $userId: String!
+    $task: TaskCompletionInput!
+    $completionParam: Boolean!
+  ) {
+    completeTask(
+      tenant: $tenant
+      userId: $userId
+      task: $task
+      completionParam: $completionParam
+    ) {
+      id
+      title
+      description
+      isCompleted
+      date
+      priority
+      category
+      startTime
+      endTime
+      source
     }
   }
 `;
 
 export const deleteTaskMutation = gql`
-  mutation deleteTask($userId: String!, $taskId: ID!) {
-    deleteTask(userId: $userId, taskId: $taskId)
+  mutation deleteTask($tenant: TenantData!, $userId: String!, $taskId: ID!) {
+    deleteTask(tenant: $tenant, userId: $userId, taskId: $taskId)
   }
 `;

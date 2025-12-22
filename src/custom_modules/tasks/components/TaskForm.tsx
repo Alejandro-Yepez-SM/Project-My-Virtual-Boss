@@ -17,6 +17,8 @@ import { Controller, useForm } from "react-hook-form";
 import { toast } from "@/hooks/useToast";
 import { userData } from "@/store/user";
 import { getTaskByUserQuery } from "../graphql/queries";
+import { toHHMM, toMin } from "@/utils/general";
+import { buildGetTaskByUserQueryVariables } from "../hooks/useGetTaskByUserQuery";
 
 type NewTaskForm = {
   title: string;
@@ -56,7 +58,7 @@ export const NewTaskForm = ({
       source: TaskSource.user,
     },
   });
-
+  //TODO: move into its own hook
   const [createNewTaskFn, { loading }] = useMutation<{ addTask: ITask }>(
     addTaskMutation,
     {
@@ -67,20 +69,24 @@ export const NewTaskForm = ({
 
         const cacheId = {
           query: getTaskByUserQuery,
-          variables: {
-            userId: user?.id,
-            date: dateString,
-          },
+          variables: buildGetTaskByUserQueryVariables({
+            dateString: newTask.date,
+            userId: user?.id ?? "",
+            userActiveTemplateId: user?.activeTemplateId ?? "",
+          }),
         };
 
         // Read existing tasks from cache
         const existing = cache.readQuery<{ getTasksByUser: ITask[] }>(cacheId);
 
         if (existing?.getTasksByUser) {
+          const newTaskList = [...existing.getTasksByUser, newTask].sort(
+            (a, b) => toMin(a.startTime) - toMin(b.startTime)
+          );
           cache.writeQuery({
             ...cacheId,
             data: {
-              getTasksByUser: [...existing.getTasksByUser, newTask],
+              getTasksByUser: newTaskList,
             },
           });
         }
@@ -90,16 +96,22 @@ export const NewTaskForm = ({
 
   const onSubmit = async (data: NewTaskForm) => {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { scheduledTime, durationMinutes, targetCount, ...task } = data;
+      const duration = Number(durationMinutes);
+      const start = toMin(scheduledTime);
+      const endTime = toHHMM(start + duration);
       await createNewTaskFn({
         variables: {
+          tenant: {
+            tenantId: import.meta.env.VITE_APP_TENANT_ID,
+          },
           userId: user?.id,
           task: {
-            ...data,
-            durationMinutes: data.durationMinutes
-              ? parseInt(data.durationMinutes as string)
-              : 5,
-            targetCount: data.targetCount ? parseInt(data.targetCount) : null,
-            date: dateString, // assuming you have this defined
+            ...task,
+            date: dateString,
+            startTime: scheduledTime,
+            endTime,
           },
         },
       });
