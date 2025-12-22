@@ -25,7 +25,7 @@ export interface TenantSettingsInput {
 }
 
 export const TenantSettingsPage = () => {
-  const { tenantInfo, userInfo } = useTenant();
+  const {  userInfo } = useTenant();
 
   const methods = useForm<TenantSettingsInput>({
     defaultValues: {

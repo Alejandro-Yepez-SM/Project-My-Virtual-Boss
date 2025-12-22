@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import clsx from "clsx";
+import fullLogoImage from "@assets/Full_Brand_L_1766196510731.png";
 
 export default function AuthLayout({
   children,
@@ -23,6 +24,15 @@ export default function AuthLayout({
   return (
     <div className="mx-auto relative p-6 bg-white z-1 dark:bg-gray-900 sm:p-0">
       <div className="relative flex flex-col justify-center w-full h-screen lg:flex-row dark:bg-gray-900 sm:p-0">
+        <div className="absolute top-20 left-20">
+          <a href="/">
+            <img
+              src={fullLogoImage}
+              alt="My Virtual Boss"
+              className="w-auto h-20"
+            />
+          </a>
+        </div>
         {children}
         <div className="items-center hidden w-full h-screen lg:w-3/5 lg:grid relative overflow-hidden">
           {/* Image stack */}

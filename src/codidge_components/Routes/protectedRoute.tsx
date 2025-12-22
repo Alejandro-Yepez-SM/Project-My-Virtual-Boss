@@ -1,3 +1,4 @@
+// ProtectedRoutes.tsx
 import React from "react";
 import { Navigate, Outlet, useLocation } from "react-router";
 import { PageLoading } from "../UI/loading/pageLoading";
@@ -12,8 +13,9 @@ const ProtectedRoutes: React.FC = () => {
     return <PageLoading className="h-screen" />;
   }
 
+  // Redirect to sign in if not authenticated
   if (!userInfo?.id) {
-    return <Navigate to="/signin" replace state={{ from: location }} />;
+    return <Navigate to="/home" replace state={{ from: location }} />;
   }
 
   return (
