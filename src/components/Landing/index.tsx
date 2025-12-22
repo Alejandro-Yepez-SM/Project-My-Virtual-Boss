@@ -137,7 +137,6 @@ export const Landing = () => {
           </div>
         </div>
       </header>
-
       {/* Hero Section */}
       <section className="py-16 lg:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5"></div>
@@ -237,7 +236,6 @@ export const Landing = () => {
           </div>
         </div>
       </section>
-
       {/* Problem/Solution Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-primary via-primary/90 to-secondary text-white">
         <div className="max-w-6xl mx-auto">
@@ -320,7 +318,6 @@ export const Landing = () => {
           </div>
         </div>
       </section>
-
       {/* Success Action Plan Section */}
       <section
         id="success-plan"
@@ -479,7 +476,6 @@ export const Landing = () => {
           </div>
         </div>
       </section>
-
       {/* Key Features Section */}
       <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
@@ -693,7 +689,6 @@ export const Landing = () => {
           </div>
         </div>
       </section>
-
       {/* Professional Tools Section with Image */}
       <section
         id="tools"
@@ -827,7 +822,6 @@ export const Landing = () => {
           </div>
         </div>
       </section>
-
       {/* Revolutionary Open House Partner System Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-violet-50 via-white to-indigo-50">
         <div className="max-w-6xl mx-auto">
@@ -938,7 +932,6 @@ export const Landing = () => {
           </div>
         </div>
       </section>
-
       {/* Enhanced Rental Application Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-emerald-50 via-white to-teal-50 overflow-hidden">
         <div className="max-w-6xl mx-auto">
@@ -1102,7 +1095,6 @@ export const Landing = () => {
           </div>
         </div>
       </section>
-
       {/* Training Section */}
       <section id="training" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
@@ -1203,7 +1195,6 @@ export const Landing = () => {
           </div>
         </div>
       </section>
-
       {/* Success Metrics Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary/5 to-secondary/5">
         <div className="max-w-6xl mx-auto">
@@ -1267,7 +1258,6 @@ export const Landing = () => {
           </div>
         </div>
       </section>
-
       {/* Onboarding Preview */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-6xl mx-auto">
@@ -1318,7 +1308,6 @@ export const Landing = () => {
           </div>
         </div>
       </section>
-
       {/* CTA Section */}
       <section className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 text-white">
         <div className="max-w-4xl mx-auto text-center">
@@ -1391,17 +1380,34 @@ export const Landing = () => {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
+      {/* Footer with Legal Links */}
       <footer className="py-12 px-4 sm:px-6 lg:px-8 bg-neutral-950 text-white">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex flex-col items-center gap-6">
             <div className="flex items-center space-x-4">
               <img src={fullLogoImage} alt="My Virtual Boss" className="h-12" />
             </div>
             <p className="text-neutral-400 text-center">
               Built for real estate professionals who are serious about success
             </p>
+
+            {/* Legal Links */}
+            <div className="flex flex-wrap items-center justify-center gap-6 text-sm">
+              <a
+                href="/privacy-policy"
+                className="text-neutral-400 hover:text-white transition-colors"
+              >
+                Privacy Policy
+              </a>
+              <span className="text-neutral-600">•</span>
+              <a
+                href="/terms-of-service"
+                className="text-neutral-400 hover:text-white transition-colors"
+              >
+                Terms of Service
+              </a>
+            </div>
+
             <div className="text-sm text-neutral-500">
               &copy; {new Date().getFullYear()} My Virtual Boss. All rights
               reserved.
