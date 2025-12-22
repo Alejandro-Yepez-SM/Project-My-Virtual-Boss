@@ -69,7 +69,7 @@ export const NotificationPopup = () => {
               </div>
             ) : (
               <div className="max-h-80 overflow-y-auto">
-                {notifications.map((notification) => {
+                {notifications.map(() => {
                   /*      const Icon = notification.icon; */
                   return (
                     <div

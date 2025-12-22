@@ -10,8 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import {
   Plus,
@@ -20,7 +18,6 @@ import {
   Home,
   Building,
   Users,
-  Calendar,
   Target,
   PieChart,
   BarChart3,
@@ -39,7 +36,7 @@ interface Income {
   createdAt: string;
 }
 
-interface PendingIncome {
+/* interface PendingIncome {
   id: number;
   type: string;
   amount: string;
@@ -62,7 +59,7 @@ interface Goal {
   year: number;
   isCompleted: boolean;
 }
-
+ */
 const incomeTypes = [
   {
     value: "sale",
@@ -100,7 +97,7 @@ export default function Income() {
   const { toast } = useToast();
   const [showAddIncome, setShowAddIncome] = useState(false);
   const [showPendingIncome, setShowPendingIncome] = useState(false);
-  const currentYear = new Date().getFullYear();
+  //  const currentYear = new Date().getFullYear();
   const [selectedQuarter, setSelectedQuarter] = useState<number | null>(null);
   const [newIncome, setNewIncome] = useState({
     type: "sale",
@@ -264,7 +261,7 @@ export default function Income() {
     },
   }); */
 
-  const resetForm = () => {
+ /*  const resetForm = () => {
     setNewIncome({
       type: "sale",
       amount: "",
@@ -272,7 +269,7 @@ export default function Income() {
       date: new Date().toISOString().split("T")[0],
       propertyAddress: "",
     });
-  };
+  }; */
 
   const resetPendingForm = () => {
     setPendingIncome({
@@ -320,23 +317,23 @@ export default function Income() {
     //createIncomeMutation.mutate(newIncome);
   };
 
-  const getIncomeTypeData = (type: string) => {
+ /*  const getIncomeTypeData = (type: string) => {
     return incomeTypes.find((t) => t.value === type) || incomeTypes[0];
-  };
+  }; */
 
-  const getTotalIncome = () => {
+ /*  const getTotalIncome = () => {
     //return income.reduce((sum, item) => sum + parseFloat(item.amount), 0);
-  };
+  }; */
 
-  const getTotalPendingIncome = () => {
-    /*   return pendingIncomeData.reduce(
+ /*  const getTotalPendingIncome = () => {
+      return pendingIncomeData.reduce(
       (sum, item) => sum + parseFloat(item.amount),
       0
-    ); */
-  };
+    );
+  }; */
 
-  const getWeightedPendingIncome = () => {
-    /* return pendingIncomeData.reduce((sum, item) => {
+/*   const getWeightedPendingIncome = () => {
+    return pendingIncomeData.reduce((sum, item) => {
       const amount = parseFloat(item.amount);
       const multiplier =
         item.likelihood === "high"
@@ -345,21 +342,21 @@ export default function Income() {
           ? 0.5
           : 0.3;
       return sum + amount * multiplier;
-    }, 0); */
-  };
+    }, 0);
+  }; */
 
-  const getIncomeByType = () => {
-    /* return incomeTypes.map((type) => ({
+/*   const getIncomeByType = () => {
+    return incomeTypes.map((type) => ({
       ...type,
       total: income
         .filter((item) => item.type === type.value)
         .reduce((sum, item) => sum + parseFloat(item.amount), 0),
-    })); */
+    }));
   };
-
-  const getQuarterlyData = () => {
+ */
+/*   const getQuarterlyData = () => {
     const quarters = [1, 2, 3, 4];
-    /*  return quarters.map((quarter) => {
+     return quarters.map((quarter) => {
       const quarterIncome = income
         .filter((item) => item.quarter === quarter)
         .reduce((sum, item) => sum + parseFloat(item.amount), 0);
@@ -385,11 +382,11 @@ export default function Income() {
         totalPercentage:
           goalValue > 0 ? (totalWithPending / goalValue) * 100 : 0,
       };
-    }); */
-  };
-
+    });
+  }; */
+/* 
   const currentQuarter = Math.ceil((new Date().getMonth() + 1) / 3);
-  /*  const currentQuarterData = getQuarterlyData().find(
+   const currentQuarterData = getQuarterlyData().find(
     (q) => q.quarter === currentQuarter
   );
  */

@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { X, Target, Phone, Users, Calendar } from "lucide-react";
-import { useToast } from "@/hooks/useToast";
 
 interface PerformanceModalProps {
   isOpen: boolean;
@@ -23,9 +22,7 @@ interface PerformanceData {
 export default function PerformanceModal({
   isOpen,
   onClose,
-  date,
 }: PerformanceModalProps) {
-  const { toast } = useToast();
   const [performance, setPerformance] = useState<PerformanceData>({
     callsMade: 0,
     conversations: 0,
