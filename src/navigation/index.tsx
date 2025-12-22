@@ -1,6 +1,8 @@
 // Navigation.tsx
 import ProtectedRoutes from "@/codidge_components/Routes/protectedRoute";
 import { Landing } from "@/components/Landing";
+import { PrivacyPolicy } from "@/components/Landing/privacy-policy";
+import { TermsOfService } from "@/components/Landing/terms-of-service";
 import { ConfirmResetPasswordPage } from "@/core_modules/auth/confirmResetPasswordPage";
 import { ForcePasswordChangePage } from "@/core_modules/auth/forcePasswordChangePage";
 import { MfaAuthenticatorPage } from "@/core_modules/auth/mfaAuthPage";
@@ -50,6 +52,10 @@ export const Navigation = () => {
             path="/change-password"
             element={<ForcePasswordChangePage />}
           />
+
+          {/* Legal routes - accessible to everyone */}
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
 
           {/* Protected Routes */}
           <Route element={<ProtectedRoutes />}>{dynamicRoutes}</Route>
