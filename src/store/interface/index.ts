@@ -69,4 +69,5 @@ export interface IUser {
   metaData: any;
   activeTemplateId: string;
   modules: IModule[];
+  loading?: boolean;
 }
