@@ -70,7 +70,8 @@ export const MfaAuthenticatorForm = () => {
         name: "",
         email: "",
         phone: "",
-
+        activeTemplateId: "",
+        loading: true,
         modules: [],
         metaData: {},
       });

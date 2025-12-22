@@ -157,7 +157,6 @@ export const calculateInvestmentAnalysis = ({
   console.log("Projected NOI:", projectedNOI);
 
   // Cash flow
-  const currentCashFlow = currentNOI - annualDebtService;
   const projectedCashFlow = projectedNOI - annualDebtService;
 
   // Cap rates

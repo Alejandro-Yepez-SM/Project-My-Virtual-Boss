@@ -12,7 +12,6 @@ import { ITableConfig, ITableRow, ITansTaskTableBodyProps } from "./interfaces";
 
 import { renderCellContent } from "./utils";
 import { tableMetaData } from "./meta";
-import Input from "../../form/input/InputField";
 import { Filter, Settings, SortAsc } from "lucide-react";
 import { useState } from "react";
 import Checkbox from "../../form/input/Checkbox";
@@ -23,6 +22,7 @@ import CheckBoxMultiSelect from "../../form/selects/checkBoxMultiSelect";
 import OutlineButton from "../../button/OutlineButton";
 import { TableHeader, TableRow, TableCell, TableBody, Table } from "../Common";
 import { PageLoading } from "../../loading/pageLoading";
+import { InputCodidge } from "../../form/input/InputField";
 
 const fuzzyFilter: FilterFn<unknown> = (row, columnId, value) => {
   const cellValue = row.getValue(columnId);
@@ -183,7 +183,7 @@ export default function DataTable({
               </div>
               <div className="flex gap-3">
                 {allowSearch && (
-                  <Input
+                  <InputCodidge
                     className="min-w-[300px]"
                     name="Search"
                     onChange={(e) => {

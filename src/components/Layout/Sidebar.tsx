@@ -1,16 +1,12 @@
 import { useLocation } from "react-router";
-import { useReactiveVar } from "@apollo/client";
-import { userData } from "../../store/user";
-import { generateTenantNavItems } from "../../store/helpers";
+
 import { BarChart3 } from "lucide-react";
 import { SidePanelButton } from "@/codidge_components/UI/button/SidePanelButton";
 
 export default function Sidebar() {
-  const userInfo = useReactiveVar(userData);
-
   const { pathname } = useLocation();
 
-  const navItems = generateTenantNavItems(userInfo!, pathname);
+  const navItems: any[] = [];
 
   return (
     <div className="w-64 h-screen flex flex-col">

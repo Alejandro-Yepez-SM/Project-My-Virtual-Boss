@@ -40,7 +40,7 @@ export const ImageGallery = ({
   const showBottomMenu = showBottomPanel ?? false;
   const allowDel = allowDeletion ?? false;
 
-  const { tenantInfo, currentSolution } = useTenant();
+  const { userInfo } = useTenant();
 
   const [tabSelection, setTabSelection] = useState<MediaType>(MediaType.IMAGE);
   const [getPresignUrl] = useMutation(getImagesUploadUrl);
@@ -50,8 +50,7 @@ export const ImageGallery = ({
   }>(getGalleryContent, {
     variables: {
       tenant: {
-        tenantId: tenantInfo!.id,
-        solutionId: currentSolution,
+        tenantId: userInfo?.activeTemplateId,
       },
     },
   });
@@ -70,8 +69,7 @@ export const ImageGallery = ({
           query: getGalleryContent,
           variables: {
             tenant: {
-              tenantId: tenantInfo!.id,
-              solutionId: currentSolution,
+              tenantId: userInfo?.activeTemplateId,
             },
           },
         });
@@ -81,8 +79,7 @@ export const ImageGallery = ({
             query: getGalleryContent,
             variables: {
               tenant: {
-                tenantId: tenantInfo!.id,
-                solutionId: currentSolution,
+                tenantId: userInfo?.activeTemplateId,
               },
             },
             data: {
@@ -109,8 +106,7 @@ export const ImageGallery = ({
         query: getGalleryContent,
         variables: {
           tenant: {
-            tenantId: tenantInfo!.id,
-            solutionId: currentSolution,
+            tenantId: userInfo?.activeTemplateId,
           },
         },
       });
@@ -120,8 +116,7 @@ export const ImageGallery = ({
           query: getGalleryContent,
           variables: {
             tenant: {
-              tenantId: tenantInfo!.id,
-              solutionId: currentSolution,
+              tenantId: userInfo?.activeTemplateId,
             },
           },
           data: {
@@ -166,8 +161,7 @@ export const ImageGallery = ({
           const { data } = await getPresignUrl({
             variables: {
               tenant: {
-                tenantId: tenantInfo!.id,
-                solutionId: currentSolution,
+                tenantId: userInfo?.activeTemplateId,
               },
               imgInput: {
                 filename: processedFile.name,
@@ -223,8 +217,7 @@ export const ImageGallery = ({
     await insertGalleryItemFn({
       variables: {
         tenant: {
-          tenantId: tenantInfo!.id,
-          solutionId: currentSolution,
+          tenantId: userInfo?.activeTemplateId,
         },
         data: uploadedFiles,
       },
@@ -346,8 +339,7 @@ export const ImageGallery = ({
                 await deleteGalleryContent({
                   variables: {
                     tenant: {
-                      tenantId: tenantInfo!.id,
-                      solutionId: currentSolution,
+                      tenantId: userInfo?.activeTemplateId,
                     },
                     s3Keys: extractS3Keys,
                   },

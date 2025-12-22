@@ -6,14 +6,12 @@ import {
   Building,
   Calendar,
   Clock,
-  Info,
   Mail,
   Phone,
   Send,
   User,
 } from "lucide-react";
 import { formatCurrency } from "../../helpers";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import { IOwnerInfo, IProperty } from "../../interfaces";
 import { useState } from "react";
 import { Dialog } from "@radix-ui/react-dialog";
@@ -37,7 +35,7 @@ export const OwnerResults = ({
   const [address, setAddress] = useState<string>("");
 
   const [showEmailModal, setShowEmailModal] = useState(false);
-  const [selectedEmail, setSelectedEmail] = useState<string>("");
+  const [_, setSelectedEmail] = useState<string>("");
 
   const resetCalculator = () => {
     setAddress("");

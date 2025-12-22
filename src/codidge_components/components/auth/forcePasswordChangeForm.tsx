@@ -47,7 +47,8 @@ export const ForcePasswordChangeForm = () => {
         name: "",
         email: "",
         phone: "",
-
+        activeTemplateId: "",
+        loading: true,
         modules: [],
         metaData: {},
       });

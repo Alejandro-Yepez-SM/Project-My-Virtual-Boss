@@ -11,7 +11,7 @@ import OutlineButton from "../../../UI/button/OutlineButton";
 import PrimaryButton from "../../../UI/button/PrimaryButton";
 
 export const PreviewModal: React.FC<IPreviewModalProps> = ({ media }) => {
-  const { tenantInfo, currentSolution } = useTenant();
+  const { userInfo } = useTenant();
   const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState({
     alt: media.image.alt,
@@ -31,8 +31,7 @@ export const PreviewModal: React.FC<IPreviewModalProps> = ({ media }) => {
         query: getGalleryContent,
         variables: {
           tenant: {
-            tenantId: tenantInfo!.id,
-            solutionId: currentSolution,
+            tenantId: userInfo?.activeTemplateId,
           },
         },
       });
@@ -42,8 +41,7 @@ export const PreviewModal: React.FC<IPreviewModalProps> = ({ media }) => {
           query: getGalleryContent,
           variables: {
             tenant: {
-              tenantId: tenantInfo!.id,
-              solutionId: currentSolution,
+              tenantId: userInfo?.activeTemplateId,
             },
           },
           data: {
@@ -67,8 +65,7 @@ export const PreviewModal: React.FC<IPreviewModalProps> = ({ media }) => {
           },
           galleryItemId: media._id,
           tenant: {
-            tenantId: tenantInfo!.id,
-            solutionId: currentSolution,
+            tenantId: userInfo?.activeTemplateId,
           },
         },
       });
