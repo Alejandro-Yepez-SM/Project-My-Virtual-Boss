@@ -1,33 +1,16 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
+import { CheckCircle } from "lucide-react";
 
-import {
-  Phone,
-  Home,
-  Users,
-  Building,
-  BarChart3,
-  Play,
-  FileText,
-  AlertCircle,
-  CheckCircle,
-  BookOpen,
-  Video,
-  MessageSquare,
-} from "lucide-react";
-import { useToast } from "@/hooks/useToast";
-
-interface TrainingCategory {
+/* interface TrainingCategory {
   id: string;
   name: string;
   description: string;
   icon: string;
   order: number;
-}
+} */
 
 interface TrainingContent {
   id: number;
@@ -40,7 +23,7 @@ interface TrainingContent {
   order: number;
 }
 
-interface UserProgress {
+/* interface UserProgress {
   id: number;
   userId: string;
   contentId: number;
@@ -48,8 +31,8 @@ interface UserProgress {
   completedAt?: string;
   notes?: string;
 }
-
-const categoryIcons = {
+ */
+/* const categoryIcons = {
   phone: Phone,
   home: Home,
   users: Users,
@@ -61,11 +44,11 @@ const contentTypeIcons = {
   video: Video,
   script: FileText,
   objection: MessageSquare,
-};
+}; */
 
 export default function Training() {
-  const { toast } = useToast();
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  /*   const { toast } = useToast();
+  const [selectedCategory, setSelectedCategory] = useState<string>(""); */
   const [selectedContent, setSelectedContent] =
     useState<TrainingContent | null>(null);
   const [notes, setNotes] = useState("");
@@ -135,7 +118,7 @@ export default function Training() {
     } */
   };
 
-  const getCategoryIcon = (iconName: string) => {
+  /* const getCategoryIcon = (iconName: string) => {
     const IconComponent =
       categoryIcons[iconName as keyof typeof categoryIcons] || BookOpen;
     return IconComponent;
@@ -213,7 +196,7 @@ export default function Training() {
           iconColor: "text-gray-600",
         };
     }
-  };
+  }; */
 
   /*  if (categoriesLoading) {
     return (

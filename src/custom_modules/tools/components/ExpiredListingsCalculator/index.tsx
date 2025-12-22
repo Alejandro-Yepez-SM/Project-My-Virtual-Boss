@@ -106,7 +106,7 @@ export default function ExpiredListingsCalculator() {
   const generateMockExpiredListings = (
     zip: string,
     days: string,
-    status: string
+    _: string
   ): ExpiredListing[] => {
     const zipHash = zip.split("").reduce((a, b) => a + b.charCodeAt(0), 0);
     const count = 8 + (zipHash % 12); // 8-20 listings
@@ -427,7 +427,7 @@ P.S. The longer a property sits off the market, the more buyers assume there mig
     if (!selectedListing || !skipTraceData || !selectedEmail) return;
 
     try {
-      const template = getExpiredListingEmailTemplate(
+      /*    const template = getExpiredListingEmailTemplate(
         selectedListing,
         skipTraceData
       );
@@ -436,9 +436,8 @@ P.S. The longer a property sits off the market, the more buyers assume there mig
       // Extract first and last name from owner name
       const nameParts = skipTraceData.ownerName.split(" ");
       const firstName = nameParts[0] || "";
-      const lastName = nameParts.slice(1).join(" ") || "";
-
-      const contactData = {
+      const lastName = nameParts.slice(1).join(" ") || ""; */
+      /*  const contactData = {
         firstName,
         lastName,
         email: selectedEmail,
@@ -459,7 +458,7 @@ P.S. The longer a property sits off the market, the more buyers assume there mig
           .toISOString()
           .split("T")[0], // 3 days from now
       };
-
+ */
       /*   await apiRequest("POST", "/api/contacts", contactData);
       queryClient.invalidateQueries({ queryKey: ["/api/contacts"] }); */
     } catch (error) {
