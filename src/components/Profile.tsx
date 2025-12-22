@@ -1,5 +1,4 @@
 import { ChevronDown, HelpCircle, UserCircle } from "lucide-react";
-import { useNavigate } from "react-router";
 import { useReactiveVar } from "@apollo/client";
 import { userData } from "../store/user";
 import { useState } from "react";
@@ -13,7 +12,6 @@ export const ProfileDropdown = () => {
   const userInfo = useReactiveVar(userData);
 
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate();
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

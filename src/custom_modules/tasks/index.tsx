@@ -1,17 +1,15 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, Target, CalendarDays, RefreshCcw } from "lucide-react";
+import { Plus, Target, CalendarDays } from "lucide-react";
 import { format } from "date-fns";
 import { useToast } from "@/hooks/useToast";
 import DailySchedule from "@/custom_modules/tasks/components/DailySchedule";
-import { useMutation, useQuery, useReactiveVar } from "@apollo/client";
+import { useReactiveVar } from "@apollo/client";
 import { ITask } from "./interfaces";
-import { getTaskByUserQuery } from "./graphql/queries";
 import { userData } from "@/store/user";
 import { UserTasks } from "./components/UserTasks";
 import { NewTaskForm } from "./components/TaskForm";
-import { updateTaskMutation } from "./graphql/mutations";
 import { useGetTaskByUserQuery } from "./hooks/useGetTaskByUserQuery";
 import { useToggleTaskCompletion } from "./hooks/useToggleTaskCompletion";
 
@@ -24,12 +22,7 @@ export default function Tasks() {
 
   const dateString = format(selectedDate, "yyyy-MM-dd");
 
-  const {
-    data,
-    loading: isLoading,
-    refetch,
-    cacheKey,
-  } = useGetTaskByUserQuery({
+  const { data, loading: isLoading } = useGetTaskByUserQuery({
     dateString,
     userActiveTemplateId: user?.activeTemplateId ?? "",
     userId: user?.id ?? "",
@@ -40,7 +33,7 @@ export default function Tasks() {
 
   console.table(tasks);
 
-  const [updateNewTaskFn] = useMutation<{ updateTask: ITask }>(
+  /*  const [updateNewTaskFn] = useMutation<{ updateTask: ITask }>(
     updateTaskMutation,
     {
       update(cache, { data }) {
@@ -68,7 +61,7 @@ export default function Tasks() {
         });
       },
     }
-  );
+  ); */
 
   const [toggleTaskCompletionFn] = useToggleTaskCompletion({
     userId: user?.id ?? "",

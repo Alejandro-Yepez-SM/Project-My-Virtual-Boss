@@ -14,7 +14,6 @@ import {
 import { IModule, IUser } from "../interface";
 import { INavItem } from "../../components/Layout/interfaces";
 import Dashboard from "../../custom_modules/dashboard/components/Dashboard";
-import { IntegrationPage } from "../../custom_modules/integration";
 import Tasks from "@/custom_modules/tasks";
 import CRM from "@/custom_modules/crm";
 import Goals from "@/custom_modules/goals";
@@ -27,11 +26,7 @@ export enum ModuleKeys {
   /*   contentGallery = "contentGallery", */
 }
 
-export const getTenantRoutes = (user: IUser | null) => {
-  const modules = user?.modules ?? [];
-
-  const moduleRoutes = modules.map((key) => {});
-
+export const getTenantRoutes = (_: IUser | null) => {
   return (
     <Route>
       <Route index element={<Dashboard />} />
