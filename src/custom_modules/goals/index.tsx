@@ -3,8 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
+
 import {
   Select,
   SelectContent,
@@ -13,21 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Plus,
-  Target,
-  TrendingUp,
-  DollarSign,
-  Phone,
-  Users,
-  Calendar,
-  Home,
-  CheckCircle2,
-  Clock,
-  Edit,
-  Trash2,
-} from "lucide-react";
-import { format } from "date-fns";
+import { Plus, DollarSign, Home } from "lucide-react";
 import { useToast } from "@/hooks/useToast";
 
 // Income-based goal types and their configurations
@@ -65,7 +50,7 @@ const incomeGoalTypes = [
 ];
 
 // Regular goal types for activity-based goals
-const goalTypes = [
+/* const goalTypes = [
   {
     value: "calls",
     label: "Phone Calls",
@@ -130,7 +115,7 @@ const goalTypes = [
     unit: "buyers",
   },
 ];
-
+ */
 // Time periods
 const timePeriods = [
   { value: "daily", label: "Daily" },
@@ -287,14 +272,14 @@ export default function Goals() {
     }); */
   };
 
-  const handleProgressUpdate = (goalId: number, currentValue: number) => {
-    /* updateGoalMutation.mutate({
+  /* const handleProgressUpdate = (goalId: number, currentValue: number) => {
+    updateGoalMutation.mutate({
       id: goalId,
       updates: { currentValue },
-    }); */
-  };
+    });
+  }; */
 
-  const getGoalTypeData = (type: string) => {
+  /*  const getGoalTypeData = (type: string) => {
     // First try to find in income goal types
     const incomeType = incomeGoalTypes.find((gt) => gt.value === type);
     if (incomeType) return incomeType;
@@ -305,22 +290,22 @@ export default function Goals() {
 
     // Default fallback
     return incomeGoalTypes[0];
-  };
+  }; */
 
-  const getProgressPercentage = (current: number, target: number) => {
+  /*  const getProgressPercentage = (current: number, target: number) => {
     return target > 0 ? Math.min((current / target) * 100, 100) : 0;
-  };
+  }; */
 
-  const getProgressColor = (percentage: number) => {
+  /*   const getProgressColor = (percentage: number) => {
     if (percentage >= 100) return "text-green-600";
     if (percentage >= 75) return "text-blue-600";
     if (percentage >= 50) return "text-yellow-600";
     if (percentage >= 25) return "text-orange-600";
     return "text-red-600";
   };
-
+ */
   // Helper function to format goal values properly
-  const formatGoalValue = (
+  /*   const formatGoalValue = (
     value: number | string,
     type: string,
     unit: string
@@ -341,7 +326,7 @@ export default function Goals() {
       // For non-monetary values, show as whole numbers without unit for cleaner display
       return `${Math.round(numValue)}`;
     }
-  };
+  }; */
 
   // Group goals by type for overview
   /* const goalsByType = Array.isArray(goals)

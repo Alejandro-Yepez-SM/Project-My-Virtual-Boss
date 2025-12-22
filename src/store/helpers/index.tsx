@@ -1,13 +1,7 @@
 import { INavItem } from "../../components/Layout/interfaces";
-import { commonModules, moduleKeyToNavSubItems } from "../config";
-import { IUser } from "../interface";
+import { commonModules } from "../config";
 
-export const generateTenantNavItems = (
-  user: IUser,
-  currentPath: string
-): INavItem[] => {
-  const modules = user?.modules ?? [];
-
+export const generateTenantNavItems = (): INavItem[] => {
   /*   const subItems = modules
     .map((keyModule) => {
       const moduleItem = moduleKeyToNavSubItems(keyModule)[keyModule.moduleKey];

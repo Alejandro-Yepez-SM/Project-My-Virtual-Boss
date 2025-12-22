@@ -9,10 +9,8 @@ import {
   Phone,
   UserPlus,
   Calculator,
-  Activity,
   Settings,
 } from "lucide-react";
-import { useToast } from "@/hooks/useToast";
 import { useLanguage } from "@/hooks/useLanguage";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -20,7 +18,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import NotificationModal from "@/components/NotificationModal";
 import ProfileSettings from "@/components/ProfileSettings";
 
-interface DashboardStats {
+/* interface DashboardStats {
   quarterlyProgress: number;
   todayTasksCompleted: number;
   todayTasksTotal: number;
@@ -28,8 +26,8 @@ interface DashboardStats {
   newContactsToday: number;
   quarterlyIncome: number;
   quarterlyGoal: number;
-}
-
+} */
+/* 
 interface Task {
   id: number;
   title: string;
@@ -46,19 +44,19 @@ interface Activity {
   type: string;
   description: string;
   createdAt: string;
-}
-
+} */
+/* 
 interface Affirmation {
   text: string;
   author?: string;
 }
-
+ */
 export default function Home() {
-  const { toast } = useToast();
+  /*   const { toast } = useToast(); */
   const { t } = useLanguage();
   const [showNotification, setShowNotification] = useState(false);
 
-  const today = new Date().toISOString().split("T")[0];
+  /*   const today = new Date().toISOString().split("T")[0]; */
 
   /* const { data: stats } = useQuery<DashboardStats>({
     queryKey: ["/api/dashboard/stats"],
@@ -159,8 +157,8 @@ export default function Home() {
   }); */
 
   // Auto-initialize if no tasks exist for today (only once)
-  const [hasInitialized, setHasInitialized] = useState(false);
-
+  /*   const [hasInitialized, setHasInitialized] = useState(false);
+   */
   /* useEffect(() => {
     if (
       tasks.length === 0 &&
@@ -202,15 +200,15 @@ export default function Home() {
     },
   });
  */
-  const handleTaskToggle = (task: Task) => {
-    /*  updateTaskMutation.mutate({
+  /* const handleTaskToggle = (task: Task) => {
+     updateTaskMutation.mutate({
       id: task.id,
       updates: {
         isCompleted: !task.isCompleted,
         completedAt: !task.isCompleted ? new Date().toISOString() : null,
       },
     });
- */
+
     if (!task.isCompleted) {
       toast({
         title: "Task Completed!",
@@ -219,8 +217,8 @@ export default function Home() {
       });
     }
   };
-
-  const getCategoryColor = (category: string) => {
+ */
+  /*  const getCategoryColor = (category: string) => {
     switch (category) {
       case "lead_generation":
         return "bg-primary/10 text-primary border-primary/20";
@@ -231,9 +229,9 @@ export default function Home() {
       default:
         return "bg-neutral-100 text-neutral-600 border-neutral-200";
     }
-  };
+  }; */
 
-  const getCategoryIcon = (category: string) => {
+  /* const getCategoryIcon = (category: string) => {
     switch (category) {
       case "lead_generation":
         return <Phone className="h-4 w-4" />;
@@ -244,9 +242,9 @@ export default function Home() {
       default:
         return <CheckCircle className="h-4 w-4" />;
     }
-  };
+  }; */
 
-  const getActivityIcon = (type: string) => {
+  /*  const getActivityIcon = (type: string) => {
     switch (type) {
       case "contact_added":
         return <UserPlus className="h-4 w-4 text-primary" />;
@@ -257,9 +255,9 @@ export default function Home() {
       default:
         return <Activity className="h-4 w-4 text-neutral-500" />;
     }
-  };
+  }; */
 
-  const formatTimeAgo = (dateString: string) => {
+  /*   const formatTimeAgo = (dateString: string) => {
     const date = new Date(dateString);
     const now = new Date();
     const diffInHours = Math.floor(
@@ -269,7 +267,7 @@ export default function Home() {
     if (diffInHours < 1) return "Just now";
     if (diffInHours < 24) return `${diffInHours} hours ago`;
     return `${Math.floor(diffInHours / 24)} days ago`;
-  };
+  }; */
 
   // Show notification after 3 seconds
   useEffect(() => {
