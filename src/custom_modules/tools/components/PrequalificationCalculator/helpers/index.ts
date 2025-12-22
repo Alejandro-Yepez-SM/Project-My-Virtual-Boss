@@ -166,7 +166,6 @@ export const calculatePrequalification = ({
     }
 
     // Calculate maximum home price and loan amount
-    let bestHomePrice = 0;
     let bestLoanAmount = 0;
     let bestMonthlyPayment = 0;
 
@@ -195,7 +194,6 @@ export const calculatePrequalification = ({
         principalAndInterest + propertyTax + insurance + pmi + monthlyHoaFees;
 
       if (totalMonthlyPayment <= actualMaxHousingPayment) {
-        bestHomePrice = testHomePrice;
         bestLoanAmount = loanAmount;
         bestMonthlyPayment = totalMonthlyPayment;
       } else {
