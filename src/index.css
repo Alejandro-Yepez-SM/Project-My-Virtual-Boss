@@ -1,6 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap");
 @import "tailwindcss";
 
 @theme {
+  --font-sans: 'Montserrat', sans-serif;
   --color-background: hsl(0, 0%, 100%);
   --color-foreground: hsl(20, 14.3%, 4.1%);
   --color-muted: hsl(220, 14.3%, 95.9%);
@@ -9,7 +11,7 @@
   --color-popover-foreground: hsl(20, 14.3%, 4.1%);
   --color-card: hsl(0, 0%, 100%);
   --color-card-foreground: hsl(20, 14.3%, 4.1%);
-  --color-border: hsl(220, 13%, 91%);
+  --color-border: hsl(210, 97%, 48%, 100%);
   --color-input: hsl(220, 13%, 91%);
   --color-primary: hsl(221, 83%, 53%);
   --color-primary-foreground: hsl(210, 40%, 98%);
@@ -40,10 +42,22 @@
 }
 
 body {
-  @apply font-sans antialiased bg-background text-foreground;
+  font-family: "Montserrat", sans-serif;
+  @apply antialiased bg-background text-foreground;
 }
 
 @layer utilities {
+  /* Button with blue glow effect */
+  .btn-glow {
+    box-shadow: 0 4px 20px -2px rgba(59, 130, 246, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .btn-glow:hover {
+    box-shadow: 0 6px 25px -2px rgba(59, 130, 246, 0.5);
+    transform: translateY(-1px);
+  }
+
   .gradient-primary {
     background: linear-gradient(
       135deg,
@@ -125,5 +139,65 @@ body {
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  /* Floating animations with different delays */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes float-slow {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+
+  @keyframes float-medium {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-18px);
+    }
+  }
+
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .float-animation-slow {
+    animation: float-slow 4s ease-in-out infinite;
+  }
+
+  .float-animation-medium {
+    animation: float-medium 3.5s ease-in-out infinite;
+  }
+
+  .float-delay-1 {
+    animation-delay: 0.5s;
+  }
+
+  .float-delay-2 {
+    animation-delay: 1s;
+  }
+
+  .float-delay-3 {
+    animation-delay: 1.5s;
+  }
+
+  .float-delay-4 {
+    animation-delay: 2s;
+  }
+
+  .float-delay-5 {
+    animation-delay: 2.5s;
   }
 }
