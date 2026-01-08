@@ -47,7 +47,7 @@ export const Landing = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="py-32 px-6 lg:px-8  from-blue-50/50 via-white to-blue-50/80">
+      <section className="py-32 px-6 lg:px-8 bg-gradient-to-b from-[#0477EE]/[0.08] via-[#0477EE]/[0.03] to-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-14 items-center">
             <div className="font-[Montserrat]">
@@ -440,7 +440,7 @@ export const Landing = () => {
       <section className="py-40 bg-white relative">
         <div className="flex flex-col lg:flex-row gap-0 items-center">
           {/* Left side - Content */}
-          <div className="w-full lg:w-1/2 px-6 lg:pl-[2%] flex flex-col justify-center">
+          <div className="w-full lg:w-1/2 px-6 lg:pl-[4%] flex flex-col justify-center">
             <h2 className="text-4xl sm:text-[55px] font-normal text-[#0F3260] mb-12 leading-tight">
               Perform at a High Level.
               <br />
